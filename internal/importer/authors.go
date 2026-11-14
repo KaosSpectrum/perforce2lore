@@ -63,7 +63,7 @@ type Credit struct {
 }
 
 // ResolveAuthor finds the Lore user for a changelist, trying in order: the changelist entry,
-// the Perforce user, the user's email and full name, and the default author.
+// the Perforce user, the user's email and full name, the Perforce user name itself, and the default author.
 func (c *Config) ResolveAuthor(ch p4.Change, authors Authors, users map[string]p4.User) (Credit, error) {
 	keys := []string{ChangeKey(ch.Number), ch.User}
 	if u, ok := users[strings.ToLower(ch.User)]; ok {
@@ -73,6 +73,9 @@ func (c *Config) ResolveAuthor(ch p4.Change, authors Authors, users map[string]p
 		if id, ok := authors.lookup(key); ok {
 			return Credit{id, key}, nil
 		}
+	}
+	if c.UseP4Users && ch.User != "" {
+		return Credit{ch.User, "useP4Users"}, nil
 	}
 	if c.DefaultAuthor != "" {
 		return Credit{c.DefaultAuthor, "defaultAuthor"}, nil

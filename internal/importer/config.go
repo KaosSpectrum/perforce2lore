@@ -45,6 +45,8 @@ type Config struct {
 
 	// AuthorsFile maps author names to Lore users; it is re-read before each changelist.
 	AuthorsFile string `json:"authorsFile"`
+	// UseP4Users credits an unmapped changelist to the Lore user with the same name as its Perforce user.
+	UseP4Users bool `json:"useP4Users"`
 	// DefaultAuthor is credited when no author is mapped; empty halts the import instead.
 	DefaultAuthor string `json:"defaultAuthor"`
 

@@ -12,6 +12,7 @@
   "pushEvery": 1,
 
   "authorsFile": "authors.json",
+  "useP4Users": false,
   "defaultAuthor": "",
 
   "descriptionTags": "keep",

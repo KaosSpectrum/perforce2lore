@@ -70,6 +70,7 @@ Relative paths in the settings file are resolved from the file's own folder.
 | `push` | `false` | Push revisions to the Lore remote. |
 | `pushEvery` | `1` | Push after this many commits. Any unpushed revisions are also pushed when a run ends. |
 | `authorsFile` | `authors.json` | The authors file (see [Authors](#authors)). |
+| `useP4Users` | `false` | Credit unmapped changelists to the Lore user with the same name as the Perforce user. |
 | `defaultAuthor` | none | Lore user credited when no author is mapped. When empty, the import halts instead. |
 | `descriptionTags` | `keep` | What to do with `#tag value` description lines: `keep` them, also copy them to `metadata`, or `move` them to metadata. |
 | `tagPrefix` | `p4-tag.` | Prefix of the metadata key for tags not in `tagMap`. |
@@ -99,9 +100,12 @@ The importer tries these entries in order and uses the first one that matches:
 1. `@<changelist>` credits that one changelist.
 2. The Perforce user name.
 3. The user's Perforce email, then their full name.
-4. `defaultAuthor`, when it's set.
+4. The Perforce user name itself, when `useP4Users` is on.
+5. `defaultAuthor`, when it's set.
 
 If nothing matches, the import halts at that changelist and logs the entry to add. `-dry-run` lists every missing entry at once.
+
+If your Lore user names are the same as your Perforce user names, turn on `useP4Users` and you don't need an authors file at all. Add entries only for the people whose names differ.
 
 ## Description tags
 

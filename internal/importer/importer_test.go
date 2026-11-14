@@ -96,6 +96,18 @@ func TestUnmappedAuthorHalts(t *testing.T) {
 	}
 }
 
+func TestUseP4UsersCreditsTheSameName(t *testing.T) {
+	c := testConfig(t, `{"depotPath":"//a","loreRoot":"/w","useP4Users":true,"defaultAuthor":"importer"}`)
+	got, err := c.ResolveAuthor(p4.Change{Number: 1, User: "jsmith"}, Authors{}, nil)
+	if err != nil || got.User != "jsmith" || got.Source != "useP4Users" {
+		t.Fatalf("got %+v, %v", got, err)
+	}
+	got, err = c.ResolveAuthor(p4.Change{Number: 2, User: "jsmith"}, Authors{"jsmith": "john"}, nil)
+	if err != nil || got.User != "john" {
+		t.Fatalf("an authors entry should still win: got %+v, %v", got, err)
+	}
+}
+
 func TestDefaultAuthorReplacesHalt(t *testing.T) {
 	c := testConfig(t, `{"depotPath":"//a","loreRoot":"/w","defaultAuthor":"importer"}`)
 	got, err := c.ResolveAuthor(p4.Change{Number: 1, User: "nobody"}, Authors{}, nil)
