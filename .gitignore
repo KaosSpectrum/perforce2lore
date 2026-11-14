@@ -1,0 +1,9 @@
+/bin/
+/dist/
+*.state.json
+*.state.json.tmp
+*.state.json.lock
+
+# Live settings; the examples folder holds the templates.
+/perforce2lore.json
+/authors.json

@@ -1,0 +1,31 @@
+{
+  "p4Port": "ssl:perforce.example.com:1666",
+  "p4User": "lore-import",
+  "p4Client": "lore-import-main",
+  "depotPath": "//Game/main/...",
+  "startChange": 0,
+  "syncThreads": 4,
+
+  "loreExe": "lore",
+  "loreRoot": "/srv/lore-import/game",
+  "push": true,
+  "pushEvery": 1,
+
+  "authorsFile": "authors.json",
+  "defaultAuthor": "",
+
+  "descriptionTags": "keep",
+  "tagPrefix": "p4-tag.",
+  "tagMap": {
+    "review": "review.by",
+    "rb": "review.by",
+    "jira": "issue",
+    "ci-skip": ""
+  },
+  "onlyMappedTags": false,
+  "stripLines": [],
+  "recordJobs": true,
+  "pruneEmptyDirs": true,
+
+  "pollSeconds": 60
+}

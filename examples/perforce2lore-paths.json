@@ -1,0 +1,25 @@
+{
+  "p4Port": "ssl:perforce.example.com:1666",
+  "p4User": "lore-import",
+  "p4Client": "lore-import",
+  "syncThreads": 4,
+
+  "loreExe": "lore",
+  "loreRoot": "/srv/lore-import/main",
+  "push": true,
+
+  "paths": {
+    "root": { "path": "//depot/game/main", "branch": "main" },
+    "branches": [
+      { "path": "//depot/game/release-1.0", "branch": "release-1.0" },
+      { "path": "//depot/game/release-1.1", "parent": "//depot/game/release-1.0" }
+    ],
+    "layout": "shared"
+  },
+
+  "authorsFile": "authors.json",
+  "descriptionTags": "keep",
+  "recordJobs": true,
+  "pruneEmptyDirs": true,
+  "pollSeconds": 60
+}

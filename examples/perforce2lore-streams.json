@@ -1,0 +1,30 @@
+{
+  "p4Port": "ssl:perforce.example.com:1666",
+  "p4User": "lore-import",
+  "p4Client": "lore-import",
+  "syncThreads": 4,
+
+  "loreExe": "lore",
+  "loreRoot": "/srv/lore-import/main",
+  "push": true,
+
+  "streams": {
+    "root": "//Game/Main",
+    "rootBranch": "main",
+    "include": ["//Game/Release-*", "//Game/Dev-*"],
+    "exclude": ["//Game/Release-0.*"],
+    "branches": {
+      "//Game/Feature-Lighting": "lighting"
+    },
+    "layout": "separate",
+    "workspaceName": "lore-import-{branch}",
+    "workspaceRoot": "/srv/lore-import/{branch}",
+    "loreUrl": "lore://lore.example.com/studio/game"
+  },
+
+  "authorsFile": "authors.json",
+  "descriptionTags": "keep",
+  "recordJobs": true,
+  "pruneEmptyDirs": true,
+  "pollSeconds": 60
+}
